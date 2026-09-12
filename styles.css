@@ -1845,7 +1845,7 @@ img {
   .hero__trail {
     display: grid;
     position: absolute;
-    z-index: 4;
+    z-index: 2;
     place-items: center;
     top: 36.34418604651163vw;
     left: -0.9255813953488372vw;
@@ -1874,7 +1874,7 @@ img {
   .hero__spark-start {
     display: block;
     position: absolute;
-    z-index: 4;
+    z-index: 2;
     top: 38.34651162790698vw;
     left: 0.48837209302325585vw;
     width: 23.474186046511626vw;

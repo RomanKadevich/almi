@@ -14,10 +14,10 @@ const rules = [
 ];
 
 const prizes = [
-  { image: "assets/images/prize-phone.webp?v=2", composite: true, quantity: 12, title: "Телефон<br>iPhone 17 Pro", alt: "Двенадцать оранжевых смартфонов iPhone 17 Pro" },
-  { image: "assets/images/prize-mixer.webp?v=2", composite: true, quantity: 12, title: "Кухонный комбайн<br>RAGEX", alt: "Двенадцать кухонных комбайнов RAGEX" },
-  { image: "assets/images/prize-airfryer.webp?v=2", composite: true, quantity: 12, title: "Аэрогриль<br>Tefal", alt: "Двенадцать аэрогрилей Tefal" },
-  { image: "assets/images/prize-gift-card.webp?v=2", composite: true, quantity: 200, title: "Подарочная карта<br>в ALMI на 100 рублей", alt: "Двести подарочных карт ALMI номиналом 100 рублей" },
+  { image: "assets/images/prize-phone.webp?v=2", mobileImage: "assets/images/prize-phone-640.webp", composite: true, quantity: 12, title: "Телефон<br>iPhone 17 Pro", alt: "Двенадцать оранжевых смартфонов iPhone 17 Pro" },
+  { image: "assets/images/prize-mixer.webp?v=2", mobileImage: "assets/images/prize-mixer-640.webp", composite: true, quantity: 12, title: "Кухонный комбайн<br>RAGEX", alt: "Двенадцать кухонных комбайнов RAGEX" },
+  { image: "assets/images/prize-airfryer.webp?v=2", mobileImage: "assets/images/prize-airfryer-640.webp", composite: true, quantity: 12, title: "Аэрогриль<br>Tefal", alt: "Двенадцать аэрогрилей Tefal" },
+  { image: "assets/images/prize-gift-card.webp?v=2", mobileImage: "assets/images/prize-gift-card-640.webp", composite: true, quantity: 200, title: "Подарочная карта<br>в ALMI на 100 рублей", alt: "Двести подарочных карт ALMI номиналом 100 рублей" },
 ];
 
 const stages = [
@@ -29,10 +29,10 @@ const stages = [
 ];
 
 const productSlides = [
-  { src: "assets/images/products-flyer-1.webp", alt: "Игровые товары рекламной игры — листовка 1 из 4" },
-  { src: "assets/images/products-flyer-2.webp", alt: "Игровые товары рекламной игры — листовка 2 из 4" },
-  { src: "assets/images/products-flyer-3.webp", alt: "Игровые товары рекламной игры — листовка 3 из 4" },
-  { src: "assets/images/products-flyer-4.webp", alt: "Игровые товары рекламной игры — листовка 4 из 4" },
+  { src: "assets/images/products-flyer-1.webp", thumb: "assets/images/products-flyer-1-thumb.webp", alt: "Игровые товары рекламной игры — листовка 1 из 4" },
+  { src: "assets/images/products-flyer-2.webp", thumb: "assets/images/products-flyer-2-thumb.webp", alt: "Игровые товары рекламной игры — листовка 2 из 4" },
+  { src: "assets/images/products-flyer-3.webp", thumb: "assets/images/products-flyer-3-thumb.webp", alt: "Игровые товары рекламной игры — листовка 3 из 4" },
+  { src: "assets/images/products-flyer-4.webp", thumb: "assets/images/products-flyer-4-thumb.webp", alt: "Игровые товары рекламной игры — листовка 4 из 4" },
 ];
 
 const faqItems = [
@@ -109,7 +109,7 @@ prizes.forEach((prize, index) => {
   article.setAttribute("aria-roledescription", "слайд");
   article.setAttribute("aria-label", `${index + 1} из ${prizes.length}`);
   const art = prize.composite
-    ? `<img class="prize-card__composite" src="${prize.image}" alt="${prize.alt}" width="826" height="647" loading="lazy" decoding="async">`
+    ? `<img class="prize-card__composite" src="${prize.mobileImage}" srcset="${prize.mobileImage} 640w, ${prize.image} 826w" sizes="(max-width: 767px) calc(100vw - 102px), (max-width: 1199px) 24vw, 21vw" alt="${prize.alt}" width="826" height="647" loading="lazy" decoding="async">`
     : `
       <img class="prize-card__bg" src="assets/images/prize-card-bg.avif" alt="">
       <img class="prize-card__product" src="${prize.image}" alt="${prize.alt}">
@@ -164,7 +164,7 @@ productSlides.forEach((slide, index) => {
   article.className = "product-slide";
   article.setAttribute("aria-roledescription", "слайд");
   article.setAttribute("aria-label", `${index + 1} из ${productSlides.length}`);
-  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img src="${slide.src}" alt="${slide.alt}" width="1600" height="2237" loading="lazy" decoding="async"></button>`;
+  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img src="${slide.thumb}" alt="${slide.alt}" width="960" height="1343" loading="lazy" decoding="async"></button>`;
   productsTrack.append(article);
 });
 

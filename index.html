@@ -12,6 +12,11 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" as="image" type="image/avif"
+      href="assets/images/hero-cat-mobile.avif"
+      imagesrcset="assets/images/hero-cat-mobile.avif 1200w, assets/images/hero-cat.avif 2500w"
+      imagesizes="(max-width: 767px) 92vw, 76vw"
+      fetchpriority="high">
     <meta name="description" content="Рекламная игра в магазинах АЛМИ и ZAKRAMA с 21 сентября по 15 ноября 2026 года. Главный приз — 25 000 BYN!">
     <link rel="canonical" href="https://igra.almi.by/">
 
@@ -35,8 +40,8 @@
     <meta name="twitter:image:alt" content="Праздник призов ALMI и ZAKRAMA — главный приз 25 000 рублей">
 
     <title>Рекламная игра в магазинах АЛМИ и ZAKRAMA «Праздник призов!»</title>
-    <link rel="stylesheet" href="styles.css?v=laptop-prizes-fluid-1">
-    <script src="script.js?v=prizes-v2" defer></script>
+    <link rel="stylesheet" href="styles.css?v=mobile-performance-1">
+    <script src="script.js?v=mobile-performance-1" defer></script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -107,17 +112,32 @@
 
     <main id="main-content">
       <section class="hero" id="top" aria-labelledby="hero-title">
-        <img class="hero__background" src="assets/images/hero-bg.avif" alt="">
+        <img class="hero__background" src="assets/images/hero-bg.avif"
+          srcset="assets/images/hero-bg-mobile.avif 800w, assets/images/hero-bg.avif 2480w"
+          sizes="(max-width: 767px) 100vw, 129vw" alt="" decoding="async">
         <div class="hero__stage">
-          <div class="hero__trail" aria-hidden="true"><div><img src="assets/images/hero-layer-1.avif" alt=""></div></div>
-          <img class="hero__spark-start" src="assets/images/hero-layer-2.avif" alt="">
-          <img class="hero__fire" src="assets/images/hero-layer-3.avif" alt="">
-          <img class="hero__cat" src="assets/images/hero-cat.avif" alt="Кот-волшебник на призовом подиуме">
-          <img class="hero__spark" src="assets/images/hero-layer-2.avif" alt="">
+          <div class="hero__trail" aria-hidden="true"><div><img src="assets/images/hero-layer-1.avif"
+            srcset="assets/images/hero-layer-1-mobile.avif 1000w, assets/images/hero-layer-1.avif 3508w"
+            sizes="(max-width: 767px) 50vw, 44vw" alt="" decoding="async"></div></div>
+          <img class="hero__spark-start" src="assets/images/hero-layer-2.avif"
+            srcset="assets/images/hero-layer-2-mobile.avif 480w, assets/images/hero-layer-2.avif 3508w"
+            sizes="(max-width: 767px) 24vw, 35vw" alt="" decoding="async">
+          <img class="hero__fire" src="assets/images/hero-layer-3.avif"
+            srcset="assets/images/hero-layer-3-mobile.avif 650w, assets/images/hero-layer-3.avif 2480w"
+            sizes="(max-width: 767px) 61vw, 66vw" alt="" decoding="async">
+          <img class="hero__cat" src="assets/images/hero-cat.avif"
+            srcset="assets/images/hero-cat-mobile.avif 1200w, assets/images/hero-cat.avif 2500w"
+            sizes="(max-width: 767px) 92vw, 76vw" alt="Кот-волшебник на призовом подиуме"
+            fetchpriority="high">
+          <img class="hero__spark" src="assets/images/hero-layer-2.avif"
+            srcset="assets/images/hero-layer-2-mobile.avif 480w, assets/images/hero-layer-2.avif 3508w"
+            sizes="(max-width: 767px) 34vw, 35vw" alt="" decoding="async">
 
           <div class="hero-prize-desktop" role="img" aria-label="Главный приз — 25 000 рублей">
             <span class="hero-prize-desktop__blur"></span>
-            <img class="hero-prize-desktop__copy" src="assets/images/hero-layer-4.avif" alt="">
+            <img class="hero-prize-desktop__copy" src="assets/images/hero-layer-4.avif"
+              srcset="assets/images/hero-layer-4-mobile.avif 520w, assets/images/hero-layer-4.avif 4096w"
+              sizes="(max-width: 767px) 36vw, 39vw" alt="" decoding="async">
             <img class="hero-prize-desktop__ruble" src="assets/icons/hero-desktop-ruble.svg" alt="">
           </div>
 
@@ -128,7 +148,10 @@
 
           <div class="hero-copy">
             <h1 id="hero-title">Праздник призов!</h1>
-            <div class="hero-copy__slogan"><img src="assets/images/hero-layer-5.avif" alt="Хватит мечтать — пора играть!"></div>
+            <div class="hero-copy__slogan"><img src="assets/images/hero-layer-5.avif"
+              srcset="assets/images/hero-layer-5-mobile.avif 800w, assets/images/hero-layer-5.avif 3508w"
+              sizes="(max-width: 767px) 87vw, 76vw" alt="Хватит мечтать — пора играть!"
+              decoding="async"></div>
           </div>
         </div>
       </section>
@@ -146,7 +169,9 @@
             <img class="main-prize-banner__bg" src="assets/images/main-prize-bg.avif" alt="" loading="lazy" decoding="async">
             <div class="main-prize-banner__content">
               <h3>Главный приз</h3>
-              <img src="assets/images/main-prize-amount.avif" alt="25 000 рублей" width="2073" height="758" loading="lazy" decoding="async">
+              <img src="assets/images/main-prize-amount-mobile.avif"
+                srcset="assets/images/main-prize-amount-mobile.avif 720w, assets/images/main-prize-amount.avif 2073w"
+                sizes="(max-width: 767px) 94vw, 55vw" alt="25 000 рублей" width="2073" height="758" loading="lazy" decoding="async">
             </div>
           </article>
 
@@ -209,7 +234,9 @@
           <div class="download-grid">
             <div>
               <h2>Скачайте наше мобильное приложение и активируйте карту «Выгода!»</h2>
-              <img class="vygoda-card" src="assets/images/vygoda-card.avif" alt="Карта «Выгода!»" width="240" height="159" loading="lazy" decoding="async">
+            <img class="vygoda-card" src="assets/images/vygoda-card-mobile.avif"
+              srcset="assets/images/vygoda-card-mobile.avif 520w, assets/images/vygoda-card.avif 1467w"
+              sizes="(max-width: 767px) 56vw, 240px" alt="Карта «Выгода!»" width="240" height="159" loading="lazy" decoding="async">
             </div>
             <div class="store-column">
               <a class="qr-link" href="https://onelink.to/29mxhr" target="_blank" rel="noopener noreferrer" aria-label="Скачать приложение по QR-коду"><img class="qr-code" src="assets/images/qr.png" alt="QR-код для скачивания приложения" width="133" height="133"></a>
@@ -245,7 +272,7 @@
         <button class="carousel-arrow carousel-arrow--left" type="button" aria-label="Предыдущее изображение" data-lightbox-prev>
           <img src="assets/icons/arrow-left.svg" alt="" width="50" height="50">
         </button>
-        <img class="lightbox__image" src="assets/images/products-flyer-1.webp" alt="Игровые товары рекламной игры — листовка 1 из 4" width="1600" height="2237" decoding="async" data-lightbox-image>
+        <img class="lightbox__image" src="assets/images/products-flyer-1-thumb.webp" alt="Игровые товары рекламной игры — листовка 1 из 4" width="1600" height="2237" decoding="async" data-lightbox-image>
         <button class="carousel-arrow carousel-arrow--right" type="button" aria-label="Следующее изображение" data-lightbox-next>
           <img src="assets/icons/arrow-right.svg" alt="" width="50" height="50">
         </button>
