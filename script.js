@@ -1,8 +1,8 @@
 const navigationItems = [
-  { id: "rules", label: "Правила" },
+  { id: "pravila", label: "Правила" },
   { id: "prizes", label: "Призы" },
   { id: "draw-stages", label: "Этапы розыгрыша" },
-  { id: "products", label: "Игровые товары" },
+  { id: "spisok-tovarov", label: "Игровые товары" },
   { id: "faq", label: "Вопрос-ответ" },
   { id: "winners", label: "Победители" },
 ];
@@ -14,10 +14,10 @@ const rules = [
 ];
 
 const prizes = [
-  { image: "assets/images/prize-phone.webp", composite: true, quantity: 12, title: "Телефон<br>iPhone 17 Pro", alt: "Двенадцать оранжевых смартфонов iPhone 17 Pro" },
-  { image: "assets/images/prize-mixer.webp", composite: true, quantity: 12, title: "Кухонный комбайн<br>RAGEX", alt: "Двенадцать кухонных комбайнов RAGEX" },
-  { image: "assets/images/prize-airfryer.webp", composite: true, quantity: 12, title: "Аэрогриль<br>Tefal", alt: "Двенадцать аэрогрилей Tefal" },
-  { image: "assets/images/prize-gift-card.webp", composite: true, quantity: 200, title: "Подарочная карта<br>в ALMI на 100 рублей", alt: "Двести подарочных карт ALMI номиналом 100 рублей" },
+  { image: "assets/images/prize-phone.webp?v=2", composite: true, quantity: 12, title: "Телефон<br>iPhone 17 Pro", alt: "Двенадцать оранжевых смартфонов iPhone 17 Pro" },
+  { image: "assets/images/prize-mixer.webp?v=2", composite: true, quantity: 12, title: "Кухонный комбайн<br>RAGEX", alt: "Двенадцать кухонных комбайнов RAGEX" },
+  { image: "assets/images/prize-airfryer.webp?v=2", composite: true, quantity: 12, title: "Аэрогриль<br>Tefal", alt: "Двенадцать аэрогрилей Tefal" },
+  { image: "assets/images/prize-gift-card.webp?v=2", composite: true, quantity: 200, title: "Подарочная карта<br>в ALMI на 100 рублей", alt: "Двести подарочных карт ALMI номиналом 100 рублей" },
 ];
 
 const stages = [
@@ -29,9 +29,10 @@ const stages = [
 ];
 
 const productSlides = [
-  { src: "assets/images/products-flyer.png", alt: "Игровые товары — листовка 1" },
-  { src: "assets/images/products-flyer.png", alt: "Игровые товары — листовка 2" },
-  { src: "assets/images/products-flyer.png", alt: "Игровые товары — листовка 3" },
+  { src: "assets/images/products-flyer-1.webp", alt: "Игровые товары рекламной игры — листовка 1 из 4" },
+  { src: "assets/images/products-flyer-2.webp", alt: "Игровые товары рекламной игры — листовка 2 из 4" },
+  { src: "assets/images/products-flyer-3.webp", alt: "Игровые товары рекламной игры — листовка 3 из 4" },
+  { src: "assets/images/products-flyer-4.webp", alt: "Игровые товары рекламной игры — листовка 4 из 4" },
 ];
 
 const faqItems = [
@@ -57,7 +58,7 @@ const faqItems = [
   },
   {
     "question": "Какие товары необходимо купить для участия в рекламной игре?",
-    "answer": "<p>Список товаров, участвующих в Рекламной игре, указан <a href=\"#products\">здесь</a>.</p>"
+    "answer": "<p>Список товаров, участвующих в Рекламной игре, указан <a href=\"assets/docs/game-products.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">здесь</a>.</p>"
   },
   {
     "question": "Нужно ли мне сохранять чек?",
@@ -90,6 +91,8 @@ rules.forEach((rule, index) => {
     const link = document.createElement("a");
     link.className = "secondary-button";
     link.href = "assets/docs/rules.pdf";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
     link.textContent = "Полные правила";
     article.append(link);
   }
@@ -108,7 +111,7 @@ prizes.forEach((prize, index) => {
   const art = prize.composite
     ? `<img class="prize-card__composite" src="${prize.image}" alt="${prize.alt}" width="826" height="647" loading="lazy" decoding="async">`
     : `
-      <img class="prize-card__bg" src="assets/images/prize-card-bg.png" alt="">
+      <img class="prize-card__bg" src="assets/images/prize-card-bg.avif" alt="">
       <img class="prize-card__product" src="${prize.image}" alt="${prize.alt}">
       <img class="prize-card__quantity" src="${prize.badge}" alt="Количество призов: ${prize.quantity}">
     `;
@@ -161,7 +164,7 @@ productSlides.forEach((slide, index) => {
   article.className = "product-slide";
   article.setAttribute("aria-roledescription", "слайд");
   article.setAttribute("aria-label", `${index + 1} из ${productSlides.length}`);
-  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img src="${slide.src}" alt="${slide.alt}"></button>`;
+  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img src="${slide.src}" alt="${slide.alt}" width="1600" height="2237" loading="lazy" decoding="async"></button>`;
   productsTrack.append(article);
 });
 
@@ -263,6 +266,9 @@ function closeMenu() {
 menuOpenButton.addEventListener("click", openMenu);
 menuCloseButton.addEventListener("click", closeMenu);
 menu.querySelectorAll("[data-menu-link]").forEach((link) => link.addEventListener("click", closeMenu));
+menu.addEventListener("click", (event) => {
+  if (event.target === menu) closeMenu();
+});
 
 menu.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -334,7 +340,7 @@ document.querySelector("[data-products-track]").addEventListener("click", (event
   if (button) openLightbox(Number(button.dataset.productOpen));
 });
 
-document.querySelector("[data-lightbox-open]").addEventListener("click", () => openLightbox(0));
+document.querySelector("[data-lightbox-open]")?.addEventListener("click", () => openLightbox(0));
 lightbox.querySelectorAll("[data-lightbox-close]").forEach((element) => element.addEventListener("click", closeLightbox));
 lightbox.querySelector("[data-lightbox-prev]").addEventListener("click", () => {
   lightboxIndex = (lightboxIndex - 1 + productSlides.length) % productSlides.length;
