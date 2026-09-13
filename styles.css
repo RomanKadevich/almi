@@ -1135,6 +1135,7 @@ img {
   border: 2px solid var(--gold);
   border-radius: 999px;
   background: var(--green);
+  cursor: pointer;
   font-family: "Alumni Sans", sans-serif;
   text-transform: uppercase;
 }
