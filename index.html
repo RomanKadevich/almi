@@ -3,10 +3,28 @@
   <head>
     <!-- Google Tag Manager -->
     <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var loaded=false;
+        function loadGtm(){
+          if(loaded)return;
+          loaded=true;
+          var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;
+          j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
+        }
+        ['pointerdown','touchstart','keydown'].forEach(function(eventName){
+          w.addEventListener(eventName,loadGtm,{once:true,passive:true});
+        });
+        w.addEventListener('load',function(){
+          if('requestIdleCallback' in w){
+            w.requestIdleCallback(loadGtm,{timeout:2500});
+          }else{
+            w.setTimeout(loadGtm,1500);
+          }
+        },{once:true});
       })(window,document,'script','dataLayer','GTM-TZR8DN9');
     </script>
     <!-- End Google Tag Manager -->
@@ -40,8 +58,8 @@
     <meta name="twitter:image:alt" content="Праздник призов ALMI и ZAKRAMA — главный приз 25 000 рублей">
 
     <title>Рекламная игра в магазинах АЛМИ и ZAKRAMA «Праздник призов!»</title>
-    <link rel="stylesheet" href="styles.css?v=mobile-performance-1">
-    <script src="script.js?v=mobile-performance-1" defer></script>
+    <link rel="stylesheet" href="styles.css?v=layout-match-24">
+    <script src="script.js?v=layout-match-24" defer></script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -61,15 +79,15 @@
 
         <nav class="desktop-nav" aria-label="Основная навигация">
           <a class="is-active" href="#pravila">Правила</a>
-          <a href="#prizes">Призы</a>
-          <a href="#draw-stages">Этапы розыгрыша</a>
+          <a href="#prizy">Призы</a>
+          <a href="#etapy-rozygrysha">Этапы розыгрыша</a>
           <a href="#spisok-tovarov">Игровые товары</a>
-          <a href="#faq">Вопрос-ответ</a>
-          <a href="#winners">Победители</a>
+          <a href="#vopros-otvet">Вопрос-ответ</a>
+          <a href="#pobediteli">Победители</a>
         </nav>
 
         <a class="account-button account-button--header" href="https://vigoda.by/auth/" aria-label="Перейти в личный кабинет">
-          <img src="assets/icons/profile.svg" alt="" width="18" height="18">
+          <img src="assets/icons/profile.svg?v=2" alt="" width="18" height="18">
           <span>Личный кабинет</span>
         </a>
 
@@ -92,17 +110,17 @@
         </div>
 
         <a class="account-button menu-overlay__account" href="https://vigoda.by/auth/">
-          <img src="assets/icons/profile.svg" alt="" width="18" height="18">
+          <img src="assets/icons/profile.svg?v=2" alt="" width="18" height="18">
           <span>Личный кабинет</span>
         </a>
 
         <nav class="menu-overlay__nav" aria-label="Мобильная навигация">
           <a class="is-active" href="#pravila" data-menu-link>Правила</a>
-          <a href="#prizes" data-menu-link>Призы</a>
-          <a href="#draw-stages" data-menu-link>Этапы розыгрыша</a>
+          <a href="#prizy" data-menu-link>Призы</a>
+          <a href="#etapy-rozygrysha" data-menu-link>Этапы розыгрыша</a>
           <a href="#spisok-tovarov" data-menu-link>Игровые товары</a>
-          <a href="#faq" data-menu-link>Вопрос-ответ</a>
-          <a href="#winners" data-menu-link>Победители</a>
+          <a href="#vopros-otvet" data-menu-link>Вопрос-ответ</a>
+          <a href="#pobediteli" data-menu-link>Победители</a>
         </nav>
 
         <img class="menu-overlay__stars menu-overlay__stars--one" src="assets/images/stars.avif" alt="">
@@ -162,17 +180,16 @@
           <div class="rules-grid" data-rules></div>
         </section>
 
-        <section class="section prizes-section shell" id="prizes" aria-labelledby="prizes-title">
+        <section class="section prizes-section shell" id="prizy" aria-labelledby="prizes-title">
           <h2 class="section-title" id="prizes-title">Призы</h2>
 
           <article class="main-prize-banner">
-            <img class="main-prize-banner__bg" src="assets/images/main-prize-bg.avif" alt="" loading="lazy" decoding="async">
-            <div class="main-prize-banner__content">
-              <h3>Главный приз</h3>
-              <img src="assets/images/main-prize-amount-mobile.avif"
-                srcset="assets/images/main-prize-amount-mobile.avif 720w, assets/images/main-prize-amount.avif 2073w"
-                sizes="(max-width: 767px) 94vw, 55vw" alt="25 000 рублей" width="2073" height="758" loading="lazy" decoding="async">
-            </div>
+            <picture>
+              <source media="(min-width: 1200px)" srcset="assets/images/main-prize-banner-desktop.avif">
+              <source media="(min-width: 768px)" srcset="assets/images/main-prize-banner-tablet.avif">
+              <img class="main-prize-banner__image" src="assets/images/main-prize-banner-mobile.avif"
+                alt="Главный приз — 25 000 рублей" width="800" height="600" loading="lazy" decoding="async">
+            </picture>
           </article>
 
           <div class="prize-gallery" aria-roledescription="карусель" aria-label="Призы рекламной игры" data-prize-gallery>
@@ -187,7 +204,7 @@
           </div>
         </section>
 
-        <section class="section stages-section shell" id="draw-stages" aria-labelledby="stages-title">
+        <section class="section stages-section shell" id="etapy-rozygrysha" aria-labelledby="stages-title">
           <h2 class="section-title" id="stages-title">Этапы розыгрыша</h2>
           <div class="stages-panel" data-stages></div>
         </section>
@@ -206,19 +223,25 @@
             </button>
             <p class="sr-only" aria-live="polite" data-products-status></p>
           </div>
-          <a class="primary-button products-all" href="assets/docs/game-products.pdf" target="_blank" rel="noopener noreferrer">Смотреть все товары</a>
+          <a class="primary-button products-all" href="assets/docs/game-products.pdf">Смотреть все товары</a>
         </section>
 
-        <section class="section faq-section shell" id="faq" aria-labelledby="faq-title">
+        <section class="section faq-section shell" id="vopros-otvet" aria-labelledby="faq-title">
           <h2 class="section-title" id="faq-title">Ответы на часто задаваемые вопросы</h2>
           <div class="faq-panel" data-faq></div>
         </section>
 
-        <section class="winners-section shell" id="winners" aria-label="Победители">
+        <section class="winners-section shell" id="pobediteli" aria-label="Победители">
           <a class="winners-button" href="#">
-            <span aria-hidden="true">× ✦</span>
+            <span class="winners-button__decor winners-button__decor--left" aria-hidden="true">
+              <i class="winners-button__spark winners-button__spark--small"></i>
+              <i class="winners-button__spark winners-button__spark--large"></i>
+            </span>
             <strong>Победители</strong>
-            <span aria-hidden="true">✦ ×</span>
+            <span class="winners-button__decor winners-button__decor--right" aria-hidden="true">
+              <i class="winners-button__spark winners-button__spark--large"></i>
+              <i class="winners-button__spark winners-button__spark--small"></i>
+            </span>
           </a>
         </section>
       </div>
@@ -227,9 +250,13 @@
     <footer class="site-footer">
       <div class="footer-inner shell">
         <div class="footer-download">
-          <div class="footer-brand brand">
-            <img class="brand-almi" src="assets/images/logo-almi.png" alt="ALMI" width="174" height="36">
-            <img class="brand-zakrama" src="assets/images/logo-zakrama.png" alt="ZAKRAMA" width="200" height="32">
+          <div class="footer-brand">
+            <a class="footer-brand__logo" href="/" aria-label="ALMI — на главную">
+              <img class="brand-almi" src="assets/images/logo-almi.png" alt="ALMI" width="174" height="36">
+            </a>
+            <a class="footer-brand__logo" href="/" aria-label="ZAKRAMA — на главную">
+              <img class="brand-zakrama" src="assets/images/logo-zakrama.png" alt="ZAKRAMA" width="200" height="32">
+            </a>
           </div>
           <div class="download-grid">
             <div>
@@ -272,7 +299,7 @@
         <button class="carousel-arrow carousel-arrow--left" type="button" aria-label="Предыдущее изображение" data-lightbox-prev>
           <img src="assets/icons/arrow-left.svg" alt="" width="50" height="50">
         </button>
-        <img class="lightbox__image" src="assets/images/products-flyer-1-thumb.webp" alt="Игровые товары рекламной игры — листовка 1 из 4" width="1600" height="2237" decoding="async" data-lightbox-image>
+        <img class="lightbox__image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Игровые товары рекламной игры — листовка 1 из 4" width="1600" height="2237" decoding="async" data-lightbox-image>
         <button class="carousel-arrow carousel-arrow--right" type="button" aria-label="Следующее изображение" data-lightbox-next>
           <img src="assets/icons/arrow-right.svg" alt="" width="50" height="50">
         </button>

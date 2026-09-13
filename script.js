@@ -1,16 +1,30 @@
 const navigationItems = [
   { id: "pravila", label: "Правила" },
-  { id: "prizes", label: "Призы" },
-  { id: "draw-stages", label: "Этапы розыгрыша" },
+  { id: "prizy", label: "Призы" },
+  { id: "etapy-rozygrysha", label: "Этапы розыгрыша" },
   { id: "spisok-tovarov", label: "Игровые товары" },
-  { id: "faq", label: "Вопрос-ответ" },
-  { id: "winners", label: "Победители" },
+  { id: "vopros-otvet", label: "Вопрос-ответ" },
+  { id: "pobediteli", label: "Победители" },
 ];
 
+const accountLink = '<a class="rule-card__account-link" href="https://vigoda.by/auth/" aria-label="Перейти в личный кабинет на VIGODA.BY">VIGODA.BY</a>';
+
 const rules = [
-  "Покупайте игровые товары на сумму от <em>2 рублей</em> в одном чеке с применением карты «Выгода!».",
-  "Подтвердите согласие на участие в игре в личном кабинете на сайте <em>VIGODA.BY</em>.",
-  "Участвуйте в розыгрыше призов.",
+  {
+    desktop: "Покупайте игровые товары на сумму<br>от <em>2 рублей</em> в одном чеке с применением<br>карты «Выгода!».",
+    tablet: "Покупайте игровые товары на<br>сумму от <em>2 рублей</em> в одном чеке<br>с применением карты «Выгода!».",
+    mobile: "Покупайте игровые товары на сумму<br>от <em>2 рублей</em> в одном чеке<br>с применением карты «Выгода!».",
+  },
+  {
+    desktop: `Подтвердите согласие на участие<br>в игре в личном кабинете<br>на сайте ${accountLink}.`,
+    tablet: `Подтвердите согласие на<br>участие в игре в личном<br>кабинете на сайте ${accountLink}.`,
+    mobile: `Подтвердите согласие на участие<br>в игре в личном кабинете<br>на сайте ${accountLink}.`,
+  },
+  {
+    desktop: "Участвуйте<br>в розыгрыше призов.",
+    tablet: "Участвуйте<br>в розыгрыше призов.",
+    mobile: "Участвуйте в розыгрыше призов.",
+  },
 ];
 
 const prizes = [
@@ -38,7 +52,7 @@ const productSlides = [
 const faqItems = [
   {
     "question": "Кто может принять участие в рекламной игре?",
-    "answer": "<p>К участию в Рекламной игре приглашаются все граждане Республики Беларусь, а также иностранные граждане и лица без гражданства, являющиеся держателями Карты/Электронной карты Участника и зарегистрированные в личном кабинете на Интернет-сайте <a href=\"https://vigoda.by\">vigoda.by</a>, заполнившие в нем достоверные актуальные персональные данные.</p>"
+    "answer": "<p>К участию в Рекламной игре приглашаются все граждане Республики Беларусь, а также иностранные граждане и лица без гражданства, являющиеся держателями Карты/Электронной карты Участника и зарегистрированные в личном кабинете на Интернет-сайте <a href=\"https://vigoda.by/auth/\">vigoda.by</a>, заполнившие в нем достоверные актуальные персональные данные.</p>"
   },
   {
     "question": "Когда проходит Рекламная игра?",
@@ -46,7 +60,7 @@ const faqItems = [
   },
   {
     "question": "Как стать участником Рекламной игры?",
-    "answer": "<p>Для участия в Рекламной игре, в период с 00:00:00 <strong>21.09.2026</strong> по 23:59:59 <strong>15.11.2026</strong> (включительно), необходимо выполнить следующие условия:</p><ol><li>Зарегистрировать бонусную Карту «Выгода» на Интернет-сайте <a href=\"https://vigoda.by\">vigoda.by</a> или в Мобильном приложении.</li><li>Проверить корректность заполнения своих персональных данных и подтвердить согласие на участие в Рекламной игре в личном кабинете.</li><li>В период с 21 сентября 2026 года по 15 ноября 2026 года приобрести в магазинах «АЛМИ» и (или) «ZAKRAMA», на территории Республики Беларусь Игровые продукты на сумму не менее 2 (Двух) белорусских рублей в одном чеке, применив при расчёте Карту «Выгода».</li></ol>"
+    "answer": "<p>Для участия в Рекламной игре, в период с 00:00:00 <strong>21.09.2026</strong> по 23:59:59 <strong>15.11.2026</strong> (включительно), необходимо выполнить следующие условия:</p><ol><li>Зарегистрировать бонусную Карту «Выгода» на Интернет-сайте <a href=\"https://vigoda.by/auth/\">vigoda.by</a> или в Мобильном приложении.</li><li>Проверить корректность заполнения своих персональных данных и подтвердить согласие на участие в Рекламной игре в личном кабинете.</li><li>В период с 21 сентября 2026 года по 15 ноября 2026 года приобрести в магазинах «АЛМИ» и (или) «ZAKRAMA», на территории Республики Беларусь Игровые продукты на сумму не менее 2 (Двух) белорусских рублей в одном чеке, применив при расчёте Карту «Выгода».</li></ol>"
   },
   {
     "question": "Сколько раз я могу принять участие в рекламной игре?",
@@ -86,13 +100,15 @@ const rulesContainer = document.querySelector("[data-rules]");
 rules.forEach((rule, index) => {
   const article = document.createElement("article");
   article.className = "rule-card";
-  article.innerHTML = `<p>${index + 1}. ${rule}</p>`;
+  article.innerHTML = `<p>
+    <span class="rule-copy rule-copy--desktop">${index + 1}. ${rule.desktop}</span>
+    <span class="rule-copy rule-copy--tablet">${index + 1}. ${rule.tablet}</span>
+    <span class="rule-copy rule-copy--mobile">${index + 1}. ${rule.mobile}</span>
+  </p>`;
   if (index === rules.length - 1) {
     const link = document.createElement("a");
     link.className = "secondary-button";
     link.href = "assets/docs/rules.pdf";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
     link.textContent = "Полные правила";
     article.append(link);
   }
@@ -147,10 +163,11 @@ stages.forEach((stage) => {
   const marker = stage.marker === "star"
     ? '<img src="assets/icons/star.svg" alt="Финальный этап" width="30" height="30">'
     : stage.marker;
+  const [labelLead, ...labelRest] = stage.label.split(" ");
   article.innerHTML = `
     <div class="stage__marker">${marker}</div>
     <p class="stage__dates"><span>${stage.from}</span><span>${stage.to}</span></p>
-    <p class="stage__draw"><span>${stage.label}</span><span>${stage.draw}</span></p>
+    <p class="stage__draw"><span class="stage__draw-label"><span>${labelLead}</span> <span>${labelRest.join(" ")}</span></span><span>${stage.draw}</span></p>
   `;
   stagesContainer.append(article);
 });
@@ -164,7 +181,7 @@ productSlides.forEach((slide, index) => {
   article.className = "product-slide";
   article.setAttribute("aria-roledescription", "слайд");
   article.setAttribute("aria-label", `${index + 1} из ${productSlides.length}`);
-  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img src="${slide.thumb}" alt="${slide.alt}" width="960" height="1343" loading="lazy" decoding="async"></button>`;
+  article.innerHTML = `<button type="button" aria-label="Открыть ${slide.alt.toLowerCase()}" data-product-open="${index}"><img data-product-image data-src="${slide.thumb}" alt="${slide.alt}" width="960" height="1343" loading="lazy" decoding="async"></button>`;
   productsTrack.append(article);
 });
 
@@ -178,6 +195,11 @@ function renderProducts() {
   const perView = productsPerView();
   const maxIndex = Math.max(0, productSlides.length - perView);
   currentProduct = Math.min(currentProduct, maxIndex);
+  [...productsTrack.querySelectorAll("[data-product-image]")]
+    .slice(currentProduct, currentProduct + perView)
+    .forEach((image) => {
+      if (!image.hasAttribute("src")) image.src = image.dataset.src;
+    });
   const gap = window.innerWidth < 768 ? 0 : 20;
   const viewport = document.querySelector(".products-viewport");
   const slideWidth = (viewport.clientWidth - gap * (perView - 1)) / perView;
@@ -199,6 +221,7 @@ document.querySelector("[data-products-next]").addEventListener("click", () => {
 
 window.addEventListener("resize", renderProducts);
 window.addEventListener("load", renderProducts);
+renderProducts();
 
 const faqContainer = document.querySelector("[data-faq]");
 faqItems.forEach((item, index) => {
@@ -255,17 +278,44 @@ function openMenu() {
   requestAnimationFrame(() => menuCloseButton.focus());
 }
 
-function closeMenu() {
+function closeMenu({ restoreFocus = true } = {}) {
   menu.classList.remove("is-open");
   menu.setAttribute("aria-hidden", "true");
   menuOpenButton.setAttribute("aria-expanded", "false");
   document.body.classList.remove("menu-open");
-  focusBeforeMenu?.focus();
+  if (restoreFocus) focusBeforeMenu?.focus({ preventScroll: true });
 }
 
 menuOpenButton.addEventListener("click", openMenu);
 menuCloseButton.addEventListener("click", closeMenu);
-menu.querySelectorAll("[data-menu-link]").forEach((link) => link.addEventListener("click", closeMenu));
+menu.querySelectorAll("[data-menu-link]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+    const target = hash?.startsWith("#") ? document.querySelector(hash) : null;
+    if (!target) {
+      closeMenu({ restoreFocus: false });
+      return;
+    }
+
+    event.preventDefault();
+    closeMenu({ restoreFocus: false });
+
+    requestAnimationFrame(() => {
+      const headerHeight = document.querySelector("[data-header]")?.getBoundingClientRect().height || 0;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 24;
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+
+      root.style.scrollBehavior = "auto";
+      if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+      window.scrollTo(0, Math.max(0, targetTop));
+
+      requestAnimationFrame(() => {
+        root.style.scrollBehavior = previousScrollBehavior;
+      });
+    });
+  });
+});
 menu.addEventListener("click", (event) => {
   if (event.target === menu) closeMenu();
 });
