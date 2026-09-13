@@ -519,47 +519,18 @@ img {
   );
 }
 
-.page-content::before,
-.page-content::after {
+.page-stars {
   position: absolute;
   z-index: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  content: "";
-  background-image:
-    url("assets/images/stars.avif"),
-    url("assets/images/stars.avif"),
-    url("assets/images/stars.avif"),
-    url("assets/images/stars.avif");
-  background-repeat: no-repeat;
-  background-size:
-    clamp(210px, 19vw, 360px) auto,
-    clamp(180px, 16vw, 310px) auto,
-    clamp(200px, 18vw, 340px) auto,
-    clamp(170px, 15vw, 290px) auto;
-  mix-blend-mode: lighten;
-  opacity: 0.82;
-  pointer-events: none;
-}
-
-.page-content::before {
   top: 0;
-  background-position:
-    left -105px top 7%,
-    right -80px top 26%,
-    left -125px top 58%,
-    right -95px top 88%;
-}
-
-.page-content::after {
-  bottom: 0;
-  background-position:
-    right -115px top 8%,
-    left -90px top 35%,
-    right -105px top 65%,
-    left -115px top 94%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  transform: translateX(-50%);
+  mix-blend-mode: lighten;
+  pointer-events: none;
 }
 
 .section,
@@ -1108,6 +1079,12 @@ img {
   text-decoration: underline;
   text-underline-offset: 3px;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 1199px) {
+  .page-stars {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1824,6 +1801,46 @@ img {
   .hero-copy h1 {
     font-size: 6.03213vw;
   }
+
+  .footer-inner {
+    grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+    column-gap: clamp(32px, 5vw, 70px);
+  }
+
+  .footer-download,
+  .footer-info {
+    min-width: 0;
+  }
+
+  .footer-brand {
+    grid-template-columns: minmax(0, 177px) minmax(0, 198px);
+    gap: clamp(18px, 3vw, 29px);
+  }
+
+  .download-grid {
+    grid-template-columns: minmax(0, 245px) minmax(105px, 135px);
+    gap: clamp(18px, 3vw, 28px);
+  }
+
+  .download-grid h2,
+  .vygoda-card,
+  .store-column .qr-link,
+  .store-column a:not(.qr-link),
+  .store-column a:not(.qr-link) img {
+    width: 100%;
+  }
+
+  .store-column .qr-link {
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .footer-info .hotline {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-size: clamp(18px, 2.1vw, 25px);
+    white-space: normal;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1837,7 +1854,7 @@ img {
   }
 
   .prizes-section + .stages-section {
-    margin-top: clamp(42px, 10vw, 68px);
+    margin-top: var(--section-gap);
   }
 
   .site-header {
@@ -2029,8 +2046,8 @@ img {
     position: absolute;
     z-index: 2;
     place-items: center;
-    top: 36.34418604651163vw;
-    left: -0.9255813953488372vw;
+    top: 37.34418604651163vw;
+    left: -2.9vw;
     width: 49.18209302325582vw;
     height: 53.9093023255814vw;
     pointer-events: none;
@@ -2056,9 +2073,9 @@ img {
   .hero__spark-start {
     display: block;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 38.34651162790698vw;
-    left: 0.48837209302325585vw;
+    left: 1.2vw;
     width: 23.474186046511626vw;
     transform: rotate(-7.37deg);
     pointer-events: none;
@@ -2115,6 +2132,18 @@ img {
     display: inline;
   }
 
+  .rule-card:first-child .rule-copy--mobile {
+    letter-spacing: -0.025em;
+  }
+
+  .rule-keep-together {
+    white-space: nowrap;
+  }
+
+  .rule-copy--mobile em {
+    white-space: nowrap;
+  }
+
   .secondary-button {
     width: 84%;
     min-height: 50px;
@@ -2128,6 +2157,17 @@ img {
     height: auto;
     aspect-ratio: 4 / 3;
     border-radius: 20px;
+  }
+
+  .main-prize-banner::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    box-sizing: border-box;
+    border: 2px solid var(--gold);
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
   }
 
   .prize-gallery {
