@@ -115,6 +115,59 @@ rules.forEach((rule, index) => {
   rulesContainer.append(article);
 });
 
+function enableTouchSwipe(element, { maxWidth, onNext, onPrevious }) {
+  let activePointer = null;
+  let startX = 0;
+  let startY = 0;
+  let lockedAxis = null;
+  let suppressClickUntil = 0;
+
+  element.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "touch" || window.innerWidth > maxWidth) return;
+    activePointer = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    lockedAxis = null;
+  });
+
+  element.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== activePointer || lockedAxis) return;
+    const distanceX = Math.abs(event.clientX - startX);
+    const distanceY = Math.abs(event.clientY - startY);
+    if (Math.max(distanceX, distanceY) < 10) return;
+    lockedAxis = distanceX > distanceY ? "horizontal" : "vertical";
+  });
+
+  element.addEventListener("pointerup", (event) => {
+    if (event.pointerId !== activePointer) return;
+    const distanceX = event.clientX - startX;
+    const distanceY = event.clientY - startY;
+    const threshold = Math.min(70, Math.max(40, element.clientWidth * 0.12));
+    const isSwipe = lockedAxis === "horizontal"
+      && Math.abs(distanceX) >= threshold
+      && Math.abs(distanceX) > Math.abs(distanceY) * 1.2;
+
+    activePointer = null;
+    lockedAxis = null;
+
+    if (!isSwipe) return;
+    suppressClickUntil = performance.now() + 400;
+    if (distanceX < 0) onNext();
+    else onPrevious();
+  });
+
+  element.addEventListener("pointercancel", () => {
+    activePointer = null;
+    lockedAxis = null;
+  });
+
+  element.addEventListener("click", (event) => {
+    if (performance.now() >= suppressClickUntil) return;
+    event.preventDefault();
+    event.stopPropagation();
+  }, true);
+}
+
 const prizeTrack = document.querySelector("[data-prize-track]");
 const prizeStatus = document.querySelector("[data-prize-status]");
 let currentPrize = 0;
@@ -146,14 +199,23 @@ function renderCurrentPrize() {
   prizeStatus.textContent = `${currentPrize + 1} из ${prizes.length}: ${cards[currentPrize].textContent.trim()}`;
 }
 
-document.querySelector("[data-prize-prev]").addEventListener("click", () => {
+function showPreviousPrize() {
   currentPrize = (currentPrize - 1 + prizes.length) % prizes.length;
   renderCurrentPrize();
-});
+}
 
-document.querySelector("[data-prize-next]").addEventListener("click", () => {
+function showNextPrize() {
   currentPrize = (currentPrize + 1) % prizes.length;
   renderCurrentPrize();
+}
+
+document.querySelector("[data-prize-prev]").addEventListener("click", showPreviousPrize);
+document.querySelector("[data-prize-next]").addEventListener("click", showNextPrize);
+
+enableTouchSwipe(prizeTrack, {
+  maxWidth: 767,
+  onNext: showNextPrize,
+  onPrevious: showPreviousPrize,
 });
 
 const stagesContainer = document.querySelector("[data-stages]");
@@ -207,16 +269,25 @@ function renderProducts() {
   productsStatus.textContent = `Показана листовка ${currentProduct + 1} из ${productSlides.length}`;
 }
 
-document.querySelector("[data-products-prev]").addEventListener("click", () => {
+function showPreviousProduct() {
   const maxIndex = Math.max(0, productSlides.length - productsPerView());
   currentProduct = currentProduct <= 0 ? maxIndex : currentProduct - 1;
   renderProducts();
-});
+}
 
-document.querySelector("[data-products-next]").addEventListener("click", () => {
+function showNextProduct() {
   const maxIndex = Math.max(0, productSlides.length - productsPerView());
   currentProduct = currentProduct >= maxIndex ? 0 : currentProduct + 1;
   renderProducts();
+}
+
+document.querySelector("[data-products-prev]").addEventListener("click", showPreviousProduct);
+document.querySelector("[data-products-next]").addEventListener("click", showNextProduct);
+
+enableTouchSwipe(document.querySelector(".products-viewport"), {
+  maxWidth: 1199,
+  onNext: showNextProduct,
+  onPrevious: showPreviousProduct,
 });
 
 window.addEventListener("resize", renderProducts);

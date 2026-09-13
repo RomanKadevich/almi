@@ -937,6 +937,18 @@ img {
   overflow: hidden;
 }
 
+.products-viewport,
+.prize-grid {
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.products-viewport img,
+.prize-grid img {
+  -webkit-user-drag: none;
+}
+
 .products-track {
   display: grid;
   grid-auto-columns: calc((100% - 40px) / 3);
