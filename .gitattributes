@@ -11,3 +11,22 @@
 *.otf binary
 *.woff binary
 *.woff2 binary
+
+# Development-only files and superseded source assets are kept in Git, but
+# omitted from source archives intended for client delivery.
+.gitattributes export-ignore
+.gitignore export-ignore
+IMPLEMENTATION_PROMPT_RU.md export-ignore
+tools/ export-ignore
+assets/docs/README.md export-ignore
+assets/fonts/*.ttf export-ignore
+assets/images/glow.svg export-ignore
+assets/images/hero-*.png export-ignore
+assets/images/main-prize-amount* export-ignore
+assets/images/main-prize-bg* export-ignore
+assets/images/prize-card-bg.avif export-ignore
+assets/images/prize-*.png export-ignore
+assets/images/products-flyer.avif export-ignore
+assets/images/products-flyer.png export-ignore
+assets/images/stars.png export-ignore
+assets/images/vygoda-card.png export-ignore
