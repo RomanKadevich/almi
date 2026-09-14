@@ -673,8 +673,6 @@ img {
   position: relative;
   height: auto;
   aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 30px;
 }
 
 .main-prize-banner picture,
