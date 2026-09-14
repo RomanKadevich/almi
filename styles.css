@@ -202,7 +202,7 @@ img {
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: clamp(20px, 2vw, 38px);
+  gap: 25px;
   white-space: nowrap;
 }
 
@@ -1378,7 +1378,7 @@ img {
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1599px) {
+@media (min-width: 1200px) and (max-width: 1499px) {
   .header-inner {
     gap: 16px;
   }
@@ -1397,7 +1397,7 @@ img {
 
   .desktop-nav {
     min-width: 0;
-    gap: 14px;
+    gap: 25px;
   }
 
   .desktop-nav a {
@@ -1412,7 +1412,110 @@ img {
   }
 }
 
+@media (min-width: 1200px) and (max-width: 1279px) {
+  .header-inner {
+    gap: 28px;
+  }
+
+  .header-inner .brand {
+    gap: 28px;
+  }
+
+  .header-inner .brand-almi {
+    width: 136px;
+  }
+
+  .header-inner .brand-zakrama {
+    width: 166px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .account-button--header {
+    margin-left: auto;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .menu-overlay {
+    background: rgba(8, 0, 20, 0.64);
+    backdrop-filter: blur(4px);
+  }
+
+  .menu-overlay__inner.shell {
+    width: clamp(430px, 35vw, 500px);
+    max-width: 100%;
+    height: 100dvh;
+    margin-right: 0;
+    margin-left: auto;
+    padding: 28px 32px 36px;
+    border-radius: 32px 0 0 32px;
+    box-shadow: -20px 0 54px rgba(0, 0, 0, 0.32);
+    transform: translateX(36px);
+    transition: transform 180ms ease;
+  }
+
+  .menu-overlay.is-open .menu-overlay__inner {
+    transform: translateX(0);
+  }
+
+  .menu-overlay__header {
+    width: 100%;
+  }
+
+  .menu-overlay__header .brand {
+    gap: 18px;
+  }
+
+  .menu-overlay__header .brand-almi {
+    width: 104px;
+  }
+
+  .menu-overlay__header .brand-zakrama {
+    width: 128px;
+  }
+
+  .menu-overlay__account {
+    margin: 48px auto 36px;
+  }
+
+  .menu-overlay__nav {
+    gap: 24px;
+  }
+
+  .menu-overlay__nav a {
+    font-size: 16px;
+  }
+
+  .menu-overlay__stars {
+    width: 270px;
+    opacity: 0.65;
+  }
+
+  .menu-overlay__stars--one {
+    top: 55px;
+    right: -100px;
+  }
+
+  .menu-overlay__stars--two {
+    bottom: -35px;
+    left: -95px;
+  }
+}
+
 @media (min-width: 1200px) and (max-width: 1439px) {
+  .hero {
+    height: 54.6875vw;
+  }
+
+  .hero__stage {
+    width: 100%;
+  }
+
   .prize-card {
     min-height: 0;
   }
