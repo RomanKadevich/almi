@@ -361,6 +361,11 @@ img {
   isolation: isolate;
 }
 
+.hero__left-composition,
+.hero__right-composition {
+  display: contents;
+}
+
 .hero__trail,
 .hero__spark-start {
   display: none;
@@ -1352,9 +1357,25 @@ img {
   }
 
   .hero__stage {
-    /* По высоте экрана вписываем только передний план; фон не сужаем. */
     width: min(100%, calc((100dvh - var(--header-height)) * 1.82857143));
+    overflow: visible;
     container-type: inline-size;
+  }
+
+  .hero__left-composition,
+  .hero__right-composition {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+
+  .hero__left-composition {
+    transform: translateX(calc((100vw - 100cqw) / -2));
+  }
+
+  .hero__right-composition {
+    transform: translateX(calc((100vw - 100cqw) / 2));
   }
 
   .hero-prize-desktop__blur {
@@ -1508,14 +1529,6 @@ img {
 }
 
 @media (min-width: 1200px) and (max-width: 1439px) {
-  .hero {
-    height: 54.6875vw;
-  }
-
-  .hero__stage {
-    width: 100%;
-  }
-
   .prize-card {
     min-height: 0;
   }
