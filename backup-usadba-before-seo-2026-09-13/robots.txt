@@ -1,4 +1,0 @@
-User-agent: *
-Host: http://c05a6894634f6c0d.by.kvitly.site
-
-Sitemap: http://c05a6894634f6c0d.by.kvitly.site/sitemap.xml
