@@ -16,8 +16,6 @@
 # omitted from source archives intended for client delivery.
 .gitattributes export-ignore
 .gitignore export-ignore
-IMPLEMENTATION_PROMPT_RU.md export-ignore
-tools/ export-ignore
 assets/docs/README.md export-ignore
 assets/fonts/*.ttf export-ignore
 assets/images/glow.svg export-ignore
