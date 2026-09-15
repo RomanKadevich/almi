@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Фавиконка рекламной игры АЛМИ</title>
+  <desc id="desc">Зелёный фирменный знак АЛМИ на тёмно-фиолетовом фоне с тонкой золотой рамкой.</desc>
+  <defs>
+    <clipPath id="icon-shape">
+      <rect x="10" y="10" width="492" height="492" rx="104"/>
+    </clipPath>
+    <clipPath id="almi-mark-crop">
+      <rect x="99" y="99" width="314" height="314"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#icon-shape)">
+    <rect width="512" height="512" fill="#210038"/>
+    <circle cx="256" cy="220" r="230" fill="#35005c" opacity="0.42"/>
+    <g clip-path="url(#almi-mark-crop)">
+      <image
+        x="99"
+        y="99"
+        width="1496"
+        height="314"
+        preserveAspectRatio="none"
+        xlink:href="logo-almi.png"
+        href="logo-almi.png"
+      />
+    </g>
+  </g>
+
+  <rect x="10" y="10" width="492" height="492" rx="104" fill="none" stroke="#ffe49a" stroke-width="12"/>
+</svg>
